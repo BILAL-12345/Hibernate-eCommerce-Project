@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+
 @SpringBootTest
 public class QueryMethodsTest {
 
@@ -28,6 +32,100 @@ public class QueryMethodsTest {
         System.out.println(product.getId());
         System.out.println(product.getName());
         System.out.println(product.getDescription());
+    }
+
+    @Test
+    void findByNameOrDescriptionMethod(){
+        List<Product> products = productRepository.findByNameOrDescription("product 1", "product 1 description");
+
+        products.forEach((p)->{
+            System.out.println(p.getId());
+            System.out.println(p.getName());
+        });
+    }
+
+    @Test
+    void findByNameAndDescriptionMethod(){
+        List<Product> products = productRepository.findByNameAndDescription("product 1", "product 1 description");
+
+        products.forEach((p)->{
+            System.out.println(p.getId());
+            System.out.println(p.getName());
+        });
+    }
+
+    @Test
+    void findDistinctByNameMethod(){
+        Product product = productRepository.findDistinctByName("product 1");
+        System.out.println(product.getId());
+        System.out.println(product.getName());
+        System.out.println(product.getDescription());
+    }
+
+    @Test
+    void findByPriceGreaterThanMethod(){
+        List<Product> products = productRepository.findByPriceGreaterThan(new BigDecimal(100));
+        products.forEach((p)->{
+            System.out.println(p.getId());
+            System.out.println(p.getName());
+        });
+    }
+
+    @Test
+    void findByPriceLessThanMethod(){
+        List<Product> products = productRepository.findByPriceLessThan(new BigDecimal(200));
+        products.forEach((p)->{
+            System.out.println(p.getId());
+            System.out.println(p.getName());
+        });
+    }
+
+    @Test
+    void findByNameContainingMethod(){
+        List<Product> products = productRepository.findByNameContaining("product");
+        products.forEach((p)->{
+            System.out.println(p.getId());
+            System.out.println(p.getName());
+        });
+    }
+
+    @Test
+    void findByNameLikeMethod(){
+        List<Product> products = productRepository.findByNameLike("product 1");
+        products.forEach((p)->{
+            System.out.println(p.getId());
+            System.out.println(p.getName());
+        });
+    }
+
+    @Test
+    void findByPriceBetweenMethod(){
+        List<Product> products = productRepository.findByPriceBetween(
+                new BigDecimal(100), new BigDecimal(400)
+        );
+
+        products.forEach((p)->{
+            System.out.println(p.getId());
+            System.out.println(p.getName());
+        });
+    }
+
+    @Test
+    void findByDateCreatedBetweenMethod(){
+
+        //start date
+        LocalDateTime startDate = LocalDateTime.of(2023,8, 24, 17, 36, 33);
+
+        //end date
+        LocalDateTime endDate = LocalDateTime.of(2023, 8, 25, 11, 07, 06);
+
+        List<Product> products = productRepository.findByDateCreatedBetween(startDate, endDate);
+
+        products.forEach((p)->{
+            System.out.println(p.getId());
+            System.out.println(p.getName());
+        });
+
     }
 
 }

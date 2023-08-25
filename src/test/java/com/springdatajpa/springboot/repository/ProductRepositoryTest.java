@@ -21,8 +21,8 @@ class ProductRepositoryTest {
     void saveMethod(){
         // create product
         Product product = new Product();
-        product.setName("product");
-        product.setDescription("product description");
+        product.setName("product 1");
+        product.setDescription("product 1 description");
         product.setSku("100ABC");
         product.setPrice(new BigDecimal(100));
         product.setActive(true);
