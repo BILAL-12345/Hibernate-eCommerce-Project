@@ -128,4 +128,33 @@ public class QueryMethodsTest {
 
     }
 
+    @Test
+    void findByNameInMethod(){
+
+        List<Product> products = productRepository.findByNameIn(List.of("product 1","product 4","product 3"));
+        products.forEach((p)->{
+            System.out.println(p.getId());
+            System.out.println(p.getName());
+        });
+    }
+
+    @Test
+    void findFirst2ByOrderByNameAscMethod(){
+
+        List<Product> products = productRepository.findFirst2ByOrderByNameAsc();
+        products.forEach((p)->{
+            System.out.println(p.getId());
+            System.out.println(p.getName());
+        });
+    }
+
+    @Test
+    void findTop2ByOrderByPriceDescMethod(){
+        List<Product> products = productRepository.findTop2ByOrderByPriceDesc();
+        products.forEach((p)->{
+            System.out.println(p.getId());
+            System.out.println(p.getName());
+        });
+    }
+
 }

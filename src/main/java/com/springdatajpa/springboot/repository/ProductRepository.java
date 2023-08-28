@@ -23,4 +23,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByNameLike(String name);
     List<Product> findByPriceBetween(BigDecimal starPrice, BigDecimal endPrice);
     List<Product> findByDateCreatedBetween(LocalDateTime startDate, LocalDateTime endDate);
+    List<Product> findByNameIn(List<String> names);
+    List<Product> findFirst2ByOrderByNameAsc();
+    List<Product> findTop2ByOrderByPriceDesc();
 }
