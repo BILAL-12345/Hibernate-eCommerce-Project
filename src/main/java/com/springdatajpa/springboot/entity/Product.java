@@ -14,6 +14,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+//Named JPQL Query using @NamedQuery Annotation
+@NamedQuery(
+        name = "Product.findByPrice",
+        query = "select p from Product p where p.price = ?1"
+)
+
 @Table(
         name = "products",
         schema = "ecommerce",
