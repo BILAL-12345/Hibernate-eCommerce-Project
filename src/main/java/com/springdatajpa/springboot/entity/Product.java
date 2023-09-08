@@ -15,9 +15,22 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @ToString
 //Named JPQL Query using @NamedQuery Annotation
-@NamedQuery(
-        name = "Product.findByPrice",
-        query = "select p from Product p where p.price = ?1"
+//@NamedQuery(
+//        name = "Product.findByPrice",
+//        query = "select p from Product p where p.price = ?1"
+//)
+
+@NamedQueries(
+        {
+                @NamedQuery(
+                        name = "Product.findAllOrderByNameDesc",
+                        query = "SELECT p from Product p ORDER BY p.name DESC"
+                ),
+                @NamedQuery(
+                        name = "Product.findByPrice",
+                        query = "SELECT p from Product p where p.price = :price"
+                )
+        }
 )
 
 @Table(
